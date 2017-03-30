@@ -40,7 +40,6 @@ class FacebookTestCase(unittest.TestCase):
                             "must be set as environmental variables.")
 
         self.test_users = []
-
     def tearDown(self):
         """Deletes the test users included in the test user list."""
         token = facebook.GraphAPI().get_app_access_token(
@@ -50,7 +49,6 @@ class FacebookTestCase(unittest.TestCase):
         for user in self.test_users:
             graph.request(user['id'], {}, None, method='DELETE')
         del self.test_users[:]
-
     def assert_raises_multi_regex(
             self, expected_exception, expected_regexp, callable_obj=None,
             *args, **kwargs):
@@ -64,7 +62,6 @@ class FacebookTestCase(unittest.TestCase):
             callable_obj(*args)
         except facebook.GraphAPIError as error:
             self.assertEqual(error.message, expected_regexp)
-
     def create_test_users(self, app_id, graph, amount):
         """Function for creating test users."""
         for i in range(amount):
